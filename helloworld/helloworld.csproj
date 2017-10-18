@@ -151,10 +151,32 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\css.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\3663599-anime-background-wallpaper %282%29.jpg" />
+    <Content Include="images\3663687-anime-background-wallpaper.jpg" />
+    <Content Include="images\596630.jpg" />
+    <Content Include="images\backgroundlast.jpg" />
+    <Content Include="images\crown2_zps7c70f94e.gif" />
+    <Content Include="images\detective-conan1308908567.jpg" />
+    <Content Include="images\doraemon1308976472.jpg" />
+    <Content Include="images\dragon-ball1308509378.jpg" />
+    <Content Include="images\luffy.jpg" />
+    <Content Include="images\Manga-logo_0.jpg" />
+    <Content Include="images\maxresdefault.jpg" />
+    <Content Include="images\naruto-anh-bia-200x304.jpg" />
+    <Content Include="images\one-piece-anh-bia-200x304.jpg" />
+    <Content Include="images\ranked.jpg" />
+    <Content Include="images\slide1.jpg" />
+    <Content Include="images\Spring17Preview.jpg" />
+    <Content Include="images\springanime2017.jpg" />
+    <Content Include="images\Update-Sign-90417.gif" />
+    <Content Include="images\Winter2016SeasonPreview.jpg" />
+    <Content Include="images\Winter2017Banner.jpg" />
+    <Content Include="images\_a_dream__anime_youtube_banner_by_zenki97-d92ltwe.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -171,6 +193,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Shared\test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

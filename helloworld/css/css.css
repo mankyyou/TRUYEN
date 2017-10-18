@@ -1,0 +1,161 @@
+﻿div#btn1 {
+    float: left;
+    margin-left: 68%;
+}
+div#banner-right {
+    margin-right: 67%;
+    float: right;
+}
+div#banner-left {
+    margin-right: 16%;
+    float: right;
+    padding-right: 10%;
+
+}
+
+body {
+    background-image: url('../images/3663599-anime-background-wallpaper (2).jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+h1#bannertest{
+    color:aliceblue;
+    text-align:center;
+    font-family:'Agency FB';
+}
+ul#nav1{
+    list-style:none;
+
+}
+a#ahome:hover {
+    background:#000000;
+    color: white;
+}
+a#alistmanga:hover {
+    background: #000000;
+    color: white;
+}
+a#atopread:hover {
+    background: #000000;
+    color: white;
+}
+a#ahome {
+    text-decoration: none;
+    color: white;
+    background: #109bd8;
+    display: block;
+    font-size: 300%;
+    font-family: 'Agency FB';
+}
+
+a#alistmanga {
+    text-decoration: none;
+    color: white;
+    background: #0c962c;
+    display: block;
+    font-size: 300%;
+    font-family:'Agency FB';
+}
+
+a#atopread {
+    text-decoration: none;
+    color: white;
+    background: #d90707;
+    display: block;
+    font-size: 300%;
+    font-family: 'Agency FB';
+}
+ul#nav1 {
+    display: inline-flex;
+    margin-right: 37%;
+    float: right;
+}
+li#lihome {
+    margin-top: 2%;
+}
+li#lilistmanga {
+    margin-top: 2%;
+}
+
+li#litopread{
+    margin-top: 2%;
+}
+img#img1 {
+    margin-left: 52%;
+}
+div#nav2-left {
+    width: 50%;
+    float: left;
+}
+div#nav2-right {
+    width: 30%;
+    float: left;
+}
+blockquote#content-op{
+    background-image:url(../images/luffy.jpg);
+    color:white
+}
+a#a-op {
+    font-size: 400%;
+    color: white;
+    text-decoration: none;
+    font-family: 'Agency FB';
+}
+a#a-op:hover{
+    color:white;
+    background:#000000;
+    
+}
+ul#ul-op {
+    margin-bottom: 3%;
+    margin-right: 25%;
+    
+}
+h1#top1 {
+    margin-left: 32%;
+    color: white;
+    padding-top: 4%;
+    font-family: 'Agency FB';
+    display:block;
+    
+}
+img#img-top1 {
+    margin-left: 33%;
+}
+div#div-dora {
+    width: 25%;
+    float: left;
+    padding-left: 22%;
+}
+div#div-conan {
+    width: 25%;
+    float: left;
+    padding-left: 15%;
+}
+div#div-db {
+    width: 25%;
+    float: left;
+    padding-left: 6%
+}
+div#div-naruto {
+    width: 25%;
+    float: left;
+    padding-bottom: 10%;
+}
+div#div-update {
+    color: white;
+    font-family: 'Agency FB';
+    float: left;
+    width: 100%;
+    padding-left: 30%;
+    padding-bottom: 2%;
+}
+div#a-more {
+    display: block;
+    color: white;
+    font-family: 'Agency FB';
+    font-size: 30px;
+    width: 10%;
+    float: right;
+}
+
