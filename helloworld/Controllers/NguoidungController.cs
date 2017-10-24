@@ -33,6 +33,7 @@ namespace helloworld.Controllers
             }
             return this.Dangky();
         }
+        // Da dang ky thanh cong
 
         public ActionResult Dangnhap()
         {
