@@ -13,7 +13,7 @@ namespace helloworld.Controllers
     {//sa
 
         QuanlytruyenEntities db = new QuanlytruyenEntities();
-        //lay dsd
+        //lay dsdd
         public ActionResult Index(int? page)
         {
             int pagesize = 3;
