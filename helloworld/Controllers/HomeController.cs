@@ -10,7 +10,7 @@ using PagedList.Mvc;
 namespace helloworld.Controllers
 {
     public class HomeController : Controller
-    {
+    {//sa
 
         QuanlytruyenEntities db = new QuanlytruyenEntities();
         //lay ds
