@@ -14,7 +14,7 @@ namespace helloworld.Controllers
         {
             return View();
         }
-        //tI2M KIE61M THEO TEn
+        //tI2M KIE61M THEO TEndf
         public ActionResult ketqua(FormCollection f)
         {
             string tukhoa = f["txtname"];
