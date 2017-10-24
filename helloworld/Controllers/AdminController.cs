@@ -99,6 +99,7 @@ namespace helloworld.Controllers
                 }
                 return RedirectToAction("loadtruyen");
             }
+            //tao moi mau 
         }
 
         public ActionResult Details(int id)
