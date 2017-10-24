@@ -1,0 +1,40 @@
+﻿@using helloworld.Models;
+@model List<TRUYEN>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container">
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+       
+        @RenderBody()
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+
+
+        </div>
+
+        
+        <!-- Left and right controls -->
+       
+    </div>
+
+</div>
+<div class="nav navbar-nav" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+        <li>
+            @Html.ActionLink("Thông tin phản hồi", "dsnguoidung", "admin")
+
+        </li>
+       
+       
+
+    </ul>
+
+</div>
+
+
+
+
+

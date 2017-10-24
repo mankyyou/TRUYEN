@@ -1,0 +1,15 @@
+﻿@using helloworld.Models;
+@model List<THELOAI>
+@{
+    ViewBag.Title = "theloai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>theloai</h2>
+
+@foreach (var item in Model)
+{
+  <a href="@Url.Action("sploai","Home",new { id = @item.Maloai })" >
+  <span>@item.Tenloai</span>
+        </a>
+}

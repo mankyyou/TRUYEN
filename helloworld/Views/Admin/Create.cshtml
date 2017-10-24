@@ -1,0 +1,95 @@
+﻿@model helloworld.Models.TRUYEN
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin2.cshtml";
+   @*<script src = "~/Scripts/jquery-1.10.2.min.js" ></script > 
+   <script src = "~/Scripts/jquery.validate.min.js" ></script >
+    <script src = "~/Scripts/jquery.validate.unobtrusive.js" ></script >*@
+
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create","Admin", FormMethod.Post,new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>TRUYEN</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tentruyen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tentruyen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tentruyen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Matacgia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @*  @Html.EditorFor(model => model.Matacgia, new { htmlAttributes = new { @class = "form-control" } }) *@
+                @Html.DropDownList("Matacgia")
+                @Html.ValidationMessageFor(model => model.Matacgia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Maloai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.Maloai, new { htmlAttributes = new { @class = "form-control" } }) *@
+                @Html.DropDownList("Maloai")
+                @Html.ValidationMessageFor(model => model.Maloai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Manxb, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @*  @Html.EditorFor(model => model.Manxb, new { htmlAttributes = new { @class = "form-control" } }) *@
+                @Html.DropDownList("Manxb")
+                @Html.ValidationMessageFor(model => model.Manxb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anhbia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @*  @Html.EditorFor(model => model.Anhbia, new { htmlAttributes = new { @class = "form-control" } }) *@
+                <input type="file" name="fileup" />
+                @ViewBag.thongbao
+                @Html.ValidationMessageFor(model => model.Anhbia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Noidung, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Noidung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Noidung, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sochuong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sochuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sochuong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "loadtruyen")
+</div>

@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TruyentranhModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DADOC">
+    <Key>
+      <PropertyRef Name="Matruyen" />
+      <PropertyRef Name="Mand" />
+    </Key>
+    <Property Name="Matruyen" Type="int" Nullable="false" />
+    <Property Name="Mand" Type="int" Nullable="false" />
+    <Property Name="Ngaydoc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LUUTRU">
+    <Key>
+      <PropertyRef Name="Maluu" />
+    </Key>
+    <Property Name="Maluu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Matruyen" Type="int" />
+    <Property Name="Mand" Type="int" />
+  </EntityType>
+  <EntityType Name="NGUOIDUNG">
+    <Key>
+      <PropertyRef Name="Mand" />
+    </Key>
+    <Property Name="Mand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hoten" Type="nvarchar(max)" />
+    <Property Name="Taikhoan" Type="nvarchar(max)" />
+    <Property Name="Matkhau" Type="nvarchar(max)" />
+    <Property Name="Nhaplaimk" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Diachi" Type="nvarchar(max)" />
+    <Property Name="Dienthoai" Type="nvarchar(max)" />
+    <Property Name="Ngaysinh" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NHAXUATBAN">
+    <Key>
+      <PropertyRef Name="Manxb" />
+    </Key>
+    <Property Name="Manxb" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tennxb" Type="nvarchar(max)" />
+    <Property Name="Diachi" Type="nvarchar(max)" />
+    <Property Name="Dienthoai" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TACGIA">
+    <Key>
+      <PropertyRef Name="Matacgia" />
+    </Key>
+    <Property Name="Matacgia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tentacgia" Type="nvarchar(max)" />
+    <Property Name="Diachi" Type="nvarchar(max)" />
+    <Property Name="Tieusu" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="THELOAI">
+    <Key>
+      <PropertyRef Name="Maloai" />
+    </Key>
+    <Property Name="Maloai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tenloai" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TRUYEN">
+    <Key>
+      <PropertyRef Name="Matruyen" />
+    </Key>
+    <Property Name="Matruyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tentruyen" Type="nvarchar(max)" />
+    <Property Name="Matacgia" Type="int" />
+    <Property Name="Maloai" Type="int" />
+    <Property Name="Manxb" Type="int" />
+    <Property Name="Anhbia" Type="nvarchar(max)" />
+    <Property Name="Noidung" Type="nvarchar(max)" />
+    <Property Name="Sochuong" Type="int" />
+  </EntityType>
+  <Association Name="FK_DADOC_TRUYEN">
+    <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="1" />
+    <End Role="DADOC" Type="Self.DADOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRUYEN">
+        <PropertyRef Name="Matruyen" />
+      </Principal>
+      <Dependent Role="DADOC">
+        <PropertyRef Name="Matruyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUUTRU_NGUOIDUNG1">
+    <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
+    <End Role="LUUTRU" Type="Self.LUUTRU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOIDUNG">
+        <PropertyRef Name="Mand" />
+      </Principal>
+      <Dependent Role="LUUTRU">
+        <PropertyRef Name="Mand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LUUTRU_TRUYEN">
+    <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="0..1" />
+    <End Role="LUUTRU" Type="Self.LUUTRU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRUYEN">
+        <PropertyRef Name="Matruyen" />
+      </Principal>
+      <Dependent Role="LUUTRU">
+        <PropertyRef Name="Matruyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRUYEN_NHAXUATBAN">
+    <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1" />
+    <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAXUATBAN">
+        <PropertyRef Name="Manxb" />
+      </Principal>
+      <Dependent Role="TRUYEN">
+        <PropertyRef Name="Manxb" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRUYEN_TACGIA">
+    <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+    <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TACGIA">
+        <PropertyRef Name="Matacgia" />
+      </Principal>
+      <Dependent Role="TRUYEN">
+        <PropertyRef Name="Matacgia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRUYEN_THELOAI">
+    <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+    <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THELOAI">
+        <PropertyRef Name="Maloai" />
+      </Principal>
+      <Dependent Role="TRUYEN">
+        <PropertyRef Name="Maloai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TruyentranhModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DADOC" EntityType="Self.DADOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LUUTRU" EntityType="Self.LUUTRU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHAXUATBAN" EntityType="Self.NHAXUATBAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TACGIA" EntityType="Self.TACGIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THELOAI" EntityType="Self.THELOAI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRUYEN" EntityType="Self.TRUYEN" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DADOC_TRUYEN" Association="Self.FK_DADOC_TRUYEN">
+      <End Role="TRUYEN" EntitySet="TRUYEN" />
+      <End Role="DADOC" EntitySet="DADOC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LUUTRU_NGUOIDUNG1" Association="Self.FK_LUUTRU_NGUOIDUNG1">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+      <End Role="LUUTRU" EntitySet="LUUTRU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LUUTRU_TRUYEN" Association="Self.FK_LUUTRU_TRUYEN">
+      <End Role="TRUYEN" EntitySet="TRUYEN" />
+      <End Role="LUUTRU" EntitySet="LUUTRU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRUYEN_NHAXUATBAN" Association="Self.FK_TRUYEN_NHAXUATBAN">
+      <End Role="NHAXUATBAN" EntitySet="NHAXUATBAN" />
+      <End Role="TRUYEN" EntitySet="TRUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRUYEN_TACGIA" Association="Self.FK_TRUYEN_TACGIA">
+      <End Role="TACGIA" EntitySet="TACGIA" />
+      <End Role="TRUYEN" EntitySet="TRUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRUYEN_THELOAI" Association="Self.FK_TRUYEN_THELOAI">
+      <End Role="THELOAI" EntitySet="THELOAI" />
+      <End Role="TRUYEN" EntitySet="TRUYEN" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

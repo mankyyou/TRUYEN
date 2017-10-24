@@ -1,0 +1,76 @@
+﻿@model IEnumerable<helloworld.Models.TRUYEN> 
+
+@{
+    ViewBag.Title = "loadtruyen";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>loadtruyen</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Matruyen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tentruyen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Matacgia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Maloai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manxb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anhbia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Noidung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sochuong)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Matruyen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tentruyen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TACGIA.Tentacgia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THELOAI.Tenloai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHAXUATBAN.Tennxb)
+        </td>
+        <td>
+            <img alt="@item.Tentruyen" src="~/images/@item.Anhbia" width="100" height="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Noidung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sochuong)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Matruyen }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.Matruyen }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Matruyen })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TruyentranhModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DADOC">
+          <Key>
+            <PropertyRef Name="Matruyen" />
+            <PropertyRef Name="Mand" />
+          </Key>
+          <Property Name="Matruyen" Type="int" Nullable="false" />
+          <Property Name="Mand" Type="int" Nullable="false" />
+          <Property Name="Ngaydoc" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LUUTRU">
+          <Key>
+            <PropertyRef Name="Maluu" />
+          </Key>
+          <Property Name="Maluu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Matruyen" Type="int" />
+          <Property Name="Mand" Type="int" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="Mand" />
+          </Key>
+          <Property Name="Mand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hoten" Type="nvarchar(max)" />
+          <Property Name="Taikhoan" Type="nvarchar(max)" />
+          <Property Name="Matkhau" Type="nvarchar(max)" />
+          <Property Name="Nhaplaimk" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Diachi" Type="nvarchar(max)" />
+          <Property Name="Dienthoai" Type="nvarchar(max)" />
+          <Property Name="Ngaysinh" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NHAXUATBAN">
+          <Key>
+            <PropertyRef Name="Manxb" />
+          </Key>
+          <Property Name="Manxb" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tennxb" Type="nvarchar(max)" />
+          <Property Name="Diachi" Type="nvarchar(max)" />
+          <Property Name="Dienthoai" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TACGIA">
+          <Key>
+            <PropertyRef Name="Matacgia" />
+          </Key>
+          <Property Name="Matacgia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tentacgia" Type="nvarchar(max)" />
+          <Property Name="Diachi" Type="nvarchar(max)" />
+          <Property Name="Tieusu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="Maloai" />
+          </Key>
+          <Property Name="Maloai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tenloai" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TRUYEN">
+          <Key>
+            <PropertyRef Name="Matruyen" />
+          </Key>
+          <Property Name="Matruyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tentruyen" Type="nvarchar(max)" />
+          <Property Name="Matacgia" Type="int" />
+          <Property Name="Maloai" Type="int" />
+          <Property Name="Manxb" Type="int" />
+          <Property Name="Anhbia" Type="nvarchar(max)" />
+          <Property Name="Noidung" Type="nvarchar(max)" />
+          <Property Name="Sochuong" Type="int" />
+        </EntityType>
+        <Association Name="FK_DADOC_TRUYEN">
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="1" />
+          <End Role="DADOC" Type="Self.DADOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRUYEN">
+              <PropertyRef Name="Matruyen" />
+            </Principal>
+            <Dependent Role="DADOC">
+              <PropertyRef Name="Matruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LUUTRU_NGUOIDUNG1">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
+          <End Role="LUUTRU" Type="Self.LUUTRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="Mand" />
+            </Principal>
+            <Dependent Role="LUUTRU">
+              <PropertyRef Name="Mand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LUUTRU_TRUYEN">
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="0..1" />
+          <End Role="LUUTRU" Type="Self.LUUTRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRUYEN">
+              <PropertyRef Name="Matruyen" />
+            </Principal>
+            <Dependent Role="LUUTRU">
+              <PropertyRef Name="Matruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRUYEN_NHAXUATBAN">
+          <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1" />
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAXUATBAN">
+              <PropertyRef Name="Manxb" />
+            </Principal>
+            <Dependent Role="TRUYEN">
+              <PropertyRef Name="Manxb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRUYEN_TACGIA">
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TACGIA">
+              <PropertyRef Name="Matacgia" />
+            </Principal>
+            <Dependent Role="TRUYEN">
+              <PropertyRef Name="Matacgia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRUYEN_THELOAI">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="Maloai" />
+            </Principal>
+            <Dependent Role="TRUYEN">
+              <PropertyRef Name="Maloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TruyentranhModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DADOC" EntityType="Self.DADOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LUUTRU" EntityType="Self.LUUTRU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHAXUATBAN" EntityType="Self.NHAXUATBAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TACGIA" EntityType="Self.TACGIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THELOAI" EntityType="Self.THELOAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRUYEN" EntityType="Self.TRUYEN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DADOC_TRUYEN" Association="Self.FK_DADOC_TRUYEN">
+            <End Role="TRUYEN" EntitySet="TRUYEN" />
+            <End Role="DADOC" EntitySet="DADOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LUUTRU_NGUOIDUNG1" Association="Self.FK_LUUTRU_NGUOIDUNG1">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="LUUTRU" EntitySet="LUUTRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LUUTRU_TRUYEN" Association="Self.FK_LUUTRU_TRUYEN">
+            <End Role="TRUYEN" EntitySet="TRUYEN" />
+            <End Role="LUUTRU" EntitySet="LUUTRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRUYEN_NHAXUATBAN" Association="Self.FK_TRUYEN_NHAXUATBAN">
+            <End Role="NHAXUATBAN" EntitySet="NHAXUATBAN" />
+            <End Role="TRUYEN" EntitySet="TRUYEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRUYEN_TACGIA" Association="Self.FK_TRUYEN_TACGIA">
+            <End Role="TACGIA" EntitySet="TACGIA" />
+            <End Role="TRUYEN" EntitySet="TRUYEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRUYEN_THELOAI" Association="Self.FK_TRUYEN_THELOAI">
+            <End Role="THELOAI" EntitySet="THELOAI" />
+            <End Role="TRUYEN" EntitySet="TRUYEN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TruyentranhModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DADOC">
+          <Key>
+            <PropertyRef Name="Matruyen" />
+            <PropertyRef Name="Mand" />
+          </Key>
+          <Property Name="Matruyen" Type="Int32" Nullable="false" />
+          <Property Name="Mand" Type="Int32" Nullable="false" />
+          <Property Name="Ngaydoc" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TRUYEN" Relationship="Self.FK_DADOC_TRUYEN" FromRole="DADOC" ToRole="TRUYEN" />
+        </EntityType>
+        <EntityType Name="LUUTRU">
+          <Key>
+            <PropertyRef Name="Maluu" />
+          </Key>
+          <Property Name="Maluu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Matruyen" Type="Int32" />
+          <Property Name="Mand" Type="Int32" />
+          <NavigationProperty Name="NGUOIDUNG" Relationship="Self.FK_LUUTRU_NGUOIDUNG1" FromRole="LUUTRU" ToRole="NGUOIDUNG" />
+          <NavigationProperty Name="TRUYEN" Relationship="Self.FK_LUUTRU_TRUYEN" FromRole="LUUTRU" ToRole="TRUYEN" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="Mand" />
+          </Key>
+          <Property Name="Mand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hoten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Taikhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Matkhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nhaplaimk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dienthoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LUUTRUs" Relationship="Self.FK_LUUTRU_NGUOIDUNG1" FromRole="NGUOIDUNG" ToRole="LUUTRU" />
+        </EntityType>
+        <EntityType Name="NHAXUATBAN">
+          <Key>
+            <PropertyRef Name="Manxb" />
+          </Key>
+          <Property Name="Manxb" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tennxb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dienthoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TRUYENs" Relationship="Self.FK_TRUYEN_NHAXUATBAN" FromRole="NHAXUATBAN" ToRole="TRUYEN" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TACGIA">
+          <Key>
+            <PropertyRef Name="Matacgia" />
+          </Key>
+          <Property Name="Matacgia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tentacgia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tieusu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TRUYENs" Relationship="Self.FK_TRUYEN_TACGIA" FromRole="TACGIA" ToRole="TRUYEN" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="Maloai" />
+          </Key>
+          <Property Name="Maloai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tenloai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TRUYENs" Relationship="Self.FK_TRUYEN_THELOAI" FromRole="THELOAI" ToRole="TRUYEN" />
+        </EntityType>
+        <EntityType Name="TRUYEN">
+          <Key>
+            <PropertyRef Name="Matruyen" />
+          </Key>
+          <Property Name="Matruyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tentruyen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Matacgia" Type="Int32" />
+          <Property Name="Maloai" Type="Int32" />
+          <Property Name="Manxb" Type="Int32" />
+          <Property Name="Anhbia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sochuong" Type="Int32" />
+          <NavigationProperty Name="DADOCs" Relationship="Self.FK_DADOC_TRUYEN" FromRole="TRUYEN" ToRole="DADOC" />
+          <NavigationProperty Name="LUUTRUs" Relationship="Self.FK_LUUTRU_TRUYEN" FromRole="TRUYEN" ToRole="LUUTRU" />
+          <NavigationProperty Name="NHAXUATBAN" Relationship="Self.FK_TRUYEN_NHAXUATBAN" FromRole="TRUYEN" ToRole="NHAXUATBAN" />
+          <NavigationProperty Name="TACGIA" Relationship="Self.FK_TRUYEN_TACGIA" FromRole="TRUYEN" ToRole="TACGIA" />
+          <NavigationProperty Name="THELOAI" Relationship="Self.FK_TRUYEN_THELOAI" FromRole="TRUYEN" ToRole="THELOAI" />
+        </EntityType>
+        <Association Name="FK_DADOC_TRUYEN">
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="1" />
+          <End Role="DADOC" Type="Self.DADOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRUYEN">
+              <PropertyRef Name="Matruyen" />
+            </Principal>
+            <Dependent Role="DADOC">
+              <PropertyRef Name="Matruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LUUTRU_NGUOIDUNG1">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
+          <End Role="LUUTRU" Type="Self.LUUTRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="Mand" />
+            </Principal>
+            <Dependent Role="LUUTRU">
+              <PropertyRef Name="Mand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LUUTRU_TRUYEN">
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="0..1" />
+          <End Role="LUUTRU" Type="Self.LUUTRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRUYEN">
+              <PropertyRef Name="Matruyen" />
+            </Principal>
+            <Dependent Role="LUUTRU">
+              <PropertyRef Name="Matruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRUYEN_NHAXUATBAN">
+          <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1" />
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAXUATBAN">
+              <PropertyRef Name="Manxb" />
+            </Principal>
+            <Dependent Role="TRUYEN">
+              <PropertyRef Name="Manxb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRUYEN_TACGIA">
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TACGIA">
+              <PropertyRef Name="Matacgia" />
+            </Principal>
+            <Dependent Role="TRUYEN">
+              <PropertyRef Name="Matacgia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRUYEN_THELOAI">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="TRUYEN" Type="Self.TRUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="Maloai" />
+            </Principal>
+            <Dependent Role="TRUYEN">
+              <PropertyRef Name="Maloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanlytruyenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="DADOCs" EntityType="Self.DADOC" />
+          <EntitySet Name="LUUTRUs" EntityType="Self.LUUTRU" />
+          <EntitySet Name="NGUOIDUNGs" EntityType="Self.NGUOIDUNG" />
+          <EntitySet Name="NHAXUATBANs" EntityType="Self.NHAXUATBAN" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TACGIAs" EntityType="Self.TACGIA" />
+          <EntitySet Name="THELOAIs" EntityType="Self.THELOAI" />
+          <EntitySet Name="TRUYENs" EntityType="Self.TRUYEN" />
+          <AssociationSet Name="FK_DADOC_TRUYEN" Association="Self.FK_DADOC_TRUYEN">
+            <End Role="TRUYEN" EntitySet="TRUYENs" />
+            <End Role="DADOC" EntitySet="DADOCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LUUTRU_NGUOIDUNG1" Association="Self.FK_LUUTRU_NGUOIDUNG1">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
+            <End Role="LUUTRU" EntitySet="LUUTRUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LUUTRU_TRUYEN" Association="Self.FK_LUUTRU_TRUYEN">
+            <End Role="TRUYEN" EntitySet="TRUYENs" />
+            <End Role="LUUTRU" EntitySet="LUUTRUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRUYEN_NHAXUATBAN" Association="Self.FK_TRUYEN_NHAXUATBAN">
+            <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
+            <End Role="TRUYEN" EntitySet="TRUYENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRUYEN_TACGIA" Association="Self.FK_TRUYEN_TACGIA">
+            <End Role="TACGIA" EntitySet="TACGIAs" />
+            <End Role="TRUYEN" EntitySet="TRUYENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRUYEN_THELOAI" Association="Self.FK_TRUYEN_THELOAI">
+            <End Role="THELOAI" EntitySet="THELOAIs" />
+            <End Role="TRUYEN" EntitySet="TRUYENs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TruyentranhModelStoreContainer" CdmEntityContainer="QuanlytruyenEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="TruyentranhModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DADOCs">
+            <EntityTypeMapping TypeName="TruyentranhModel.DADOC">
+              <MappingFragment StoreEntitySet="DADOC">
+                <ScalarProperty Name="Matruyen" ColumnName="Matruyen" />
+                <ScalarProperty Name="Mand" ColumnName="Mand" />
+                <ScalarProperty Name="Ngaydoc" ColumnName="Ngaydoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LUUTRUs">
+            <EntityTypeMapping TypeName="TruyentranhModel.LUUTRU">
+              <MappingFragment StoreEntitySet="LUUTRU">
+                <ScalarProperty Name="Maluu" ColumnName="Maluu" />
+                <ScalarProperty Name="Matruyen" ColumnName="Matruyen" />
+                <ScalarProperty Name="Mand" ColumnName="Mand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGUOIDUNGs">
+            <EntityTypeMapping TypeName="TruyentranhModel.NGUOIDUNG">
+              <MappingFragment StoreEntitySet="NGUOIDUNG">
+                <ScalarProperty Name="Mand" ColumnName="Mand" />
+                <ScalarProperty Name="Hoten" ColumnName="Hoten" />
+                <ScalarProperty Name="Taikhoan" ColumnName="Taikhoan" />
+                <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
+                <ScalarProperty Name="Nhaplaimk" ColumnName="Nhaplaimk" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai" />
+                <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHAXUATBANs">
+            <EntityTypeMapping TypeName="TruyentranhModel.NHAXUATBAN">
+              <MappingFragment StoreEntitySet="NHAXUATBAN">
+                <ScalarProperty Name="Manxb" ColumnName="Manxb" />
+                <ScalarProperty Name="Tennxb" ColumnName="Tennxb" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TruyentranhModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TACGIAs">
+            <EntityTypeMapping TypeName="TruyentranhModel.TACGIA">
+              <MappingFragment StoreEntitySet="TACGIA">
+                <ScalarProperty Name="Matacgia" ColumnName="Matacgia" />
+                <ScalarProperty Name="Tentacgia" ColumnName="Tentacgia" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="Tieusu" ColumnName="Tieusu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THELOAIs">
+            <EntityTypeMapping TypeName="TruyentranhModel.THELOAI">
+              <MappingFragment StoreEntitySet="THELOAI">
+                <ScalarProperty Name="Maloai" ColumnName="Maloai" />
+                <ScalarProperty Name="Tenloai" ColumnName="Tenloai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRUYENs">
+            <EntityTypeMapping TypeName="TruyentranhModel.TRUYEN">
+              <MappingFragment StoreEntitySet="TRUYEN">
+                <ScalarProperty Name="Matruyen" ColumnName="Matruyen" />
+                <ScalarProperty Name="Tentruyen" ColumnName="Tentruyen" />
+                <ScalarProperty Name="Matacgia" ColumnName="Matacgia" />
+                <ScalarProperty Name="Maloai" ColumnName="Maloai" />
+                <ScalarProperty Name="Manxb" ColumnName="Manxb" />
+                <ScalarProperty Name="Anhbia" ColumnName="Anhbia" />
+                <ScalarProperty Name="Noidung" ColumnName="Noidung" />
+                <ScalarProperty Name="Sochuong" ColumnName="Sochuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

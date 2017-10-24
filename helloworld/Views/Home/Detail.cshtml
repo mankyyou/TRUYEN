@@ -1,0 +1,20 @@
+﻿@using helloworld.Models;
+@model TRUYEN
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+<div> Mã truyện:  @Model.Matruyen</div>
+<div> Tên truyện: @Model.Tentruyen</div>
+<div> Số chương:  @Model.Sochuong</div>
+<div> Thể loại:  @Model.THELOAI.Tenloai</div>
+<img src="~/images/@Model.Anhbia"  width="150" height="150"/>
+<div> Mô tả:  @Model.Noidung</div>
+
+<a href="@Url.Action("luffy", "Chitiettruyen",new { id = Model.Matruyen })">
+   
+        <span> Đọc truyện</span>
+    </a>
+

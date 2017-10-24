@@ -46,13 +46,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -142,16 +160,83 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ChitiettruyenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NguoidungController.cs" />
+    <Compile Include="Controllers\TimkiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DADOC.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LUUTRU.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NGUOIDUNG.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHAXUATBAN.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Quanlytruyen.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quanlytruyen.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Quanlytruyen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Quanlytruyen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quanlytruyen.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TACGIA.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THELOAI.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TRUYEN.cs">
+      <DependentUpon>Quanlytruyen.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="banner\doraemonbanner.png" />
+    <Content Include="banner\narutobanner.gif" />
+    <Content Include="banner\onepiecebannner.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="cover\detective-conan1308908567.jpg" />
+    <Content Include="cover\doraemon1308976472.jpg" />
+    <Content Include="cover\dragon-ball1308509378.jpg" />
+    <Content Include="cover\naruto-anh-bia-200x304.jpg" />
+    <Content Include="cover\one-piece-anh-bia-200x304.jpg" />
     <Content Include="css\css.css" />
+    <Content Include="css\style.css" />
+    <Content Include="doraemon\chap1\doraemon-001.jpg" />
+    <Content Include="doraemon\chap1\doraemon-002.jpg" />
+    <Content Include="doraemon\chap1\doraemon-003.jpg" />
+    <Content Include="doraemon\chap1\doraemon-004.jpg" />
+    <Content Include="doraemon\chap1\doraemon-005.jpg" />
+    <Content Include="doraemon\chap1\doraemon-006.jpg" />
+    <Content Include="doraemon\chap2\doraemon-007.jpg" />
+    <Content Include="doraemon\chap2\doraemon-008.jpg" />
+    <Content Include="doraemon\chap2\doraemon-009.jpg" />
+    <Content Include="doraemon\chap2\doraemon-010.jpg" />
+    <Content Include="doraemon\chap2\doraemon-011.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -159,28 +244,79 @@
     <Content Include="images\3663599-anime-background-wallpaper %282%29.jpg" />
     <Content Include="images\3663687-anime-background-wallpaper.jpg" />
     <Content Include="images\596630.jpg" />
+    <Content Include="images\background1.jpg" />
+    <Content Include="images\backgrounddoraemon.jpg" />
     <Content Include="images\backgroundlast.jpg" />
+    <Content Include="images\conan.jpg" />
     <Content Include="images\crown2_zps7c70f94e.gif" />
     <Content Include="images\detective-conan1308908567.jpg" />
+    <Content Include="images\doraemon.jpg" />
     <Content Include="images\doraemon1308976472.jpg" />
     <Content Include="images\dragon-ball1308509378.jpg" />
+    <Content Include="images\dragonball.jpg" />
     <Content Include="images\luffy.jpg" />
     <Content Include="images\Manga-logo_0.jpg" />
     <Content Include="images\maxresdefault.jpg" />
     <Content Include="images\naruto-anh-bia-200x304.jpg" />
+    <Content Include="images\naruto.jpg" />
     <Content Include="images\one-piece-anh-bia-200x304.jpg" />
+    <Content Include="images\onepiece.jpg" />
     <Content Include="images\ranked.jpg" />
     <Content Include="images\slide1.jpg" />
     <Content Include="images\Spring17Preview.jpg" />
     <Content Include="images\springanime2017.jpg" />
+    <Content Include="images\To_aru_majutsu_no_index3-780x405.jpg" />
     <Content Include="images\Update-Sign-90417.gif" />
     <Content Include="images\Winter2016SeasonPreview.jpg" />
     <Content Include="images\Winter2017Banner.jpg" />
     <Content Include="images\_a_dream__anime_youtube_banner_by_zenki97-d92ltwe.png" />
+    <Content Include="Models\Quanlytruyen.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Quanlytruyen.edmx</DependentUpon>
+      <LastGenOutput>Quanlytruyen.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Quanlytruyen.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Quanlytruyen.edmx</DependentUpon>
+      <LastGenOutput>Quanlytruyen.cs</LastGenOutput>
+    </Content>
+    <Content Include="naruto\chap 1\naruto-002.jpg" />
+    <Content Include="naruto\chap 1\naruto-003.jpg" />
+    <Content Include="naruto\chap 1\naruto-005.jpg" />
+    <Content Include="naruto\chap 1\naruto-006.jpg" />
+    <Content Include="naruto\chap 2\naruto-002.png" />
+    <Content Include="naruto\chap 2\naruto-003.png" />
+    <Content Include="naruto\chap 2\naruto-004.png" />
+    <Content Include="naruto\chap 2\naruto-005.png" />
+    <Content Include="naruto\chap 2\naruto-006.png" />
+    <Content Include="onepiece\chap1\one-piece-001.jpg" />
+    <Content Include="onepiece\chap1\one-piece-002.jpg" />
+    <Content Include="onepiece\chap1\one-piece-003.jpg" />
+    <Content Include="onepiece\chap1\one-piece-004.jpg" />
+    <Content Include="onepiece\chap1\one-piece-005.jpg" />
+    <Content Include="onepiece\chap1\one-piece-006.jpg" />
+    <Content Include="onepiece\chap1\one-piece-007.jpg" />
+    <Content Include="onepiece\chap1\one-piece-008.jpg" />
+    <Content Include="onepiece\chap1\one-piece-009.jpg" />
+    <Content Include="onepiece\chap1\one-piece-010.jpg" />
+    <Content Include="onepiece\chap2\one-piece-011.jpg" />
+    <Content Include="onepiece\chap2\one-piece-012.jpg" />
+    <Content Include="onepiece\chap2\one-piece-013.jpg" />
+    <Content Include="onepiece\chap2\one-piece-014.jpg" />
+    <Content Include="onepiece\chap2\one-piece-016.jpg" />
+    <Content Include="onepiece\chap2\one-piece-017.jpg" />
+    <Content Include="onepiece\chap2\one-piece-018.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\Quanlytruyen.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Quanlytruyen.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Quanlytruyen.edmx.diagram">
+      <DependentUpon>Quanlytruyen.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -193,6 +329,13 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="css\styles.css" />
+    <Content Include="Views\index.html" />
+    <Content Include="Views\Shared\doraemonchap1.html" />
+    <Content Include="Views\Shared\doraemonchap2.html" />
+    <Content Include="Views\Shared\naruto-chap1.html" />
+    <Content Include="Views\Shared\Onepiece-chap1.html" />
+    <Content Include="Views\Shared\Onepiece-chap2.html" />
     <Content Include="Views\Shared\test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -208,10 +351,31 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Nguoidung\Dangky.cshtml" />
+    <Content Include="Views\Nguoidung\Dangnhap.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Logins.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\loadtruyen.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin2.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Chitiettruyen\Luffy.cshtml" />
+    <Content Include="Views\Chitiettruyen\Doreamon.cshtml" />
+    <Content Include="Views\Chitiettruyen\Naroto.cshtml" />
+    <Content Include="Views\Chitiettruyen\Doreamon2.cshtml" />
+    <Content Include="Views\Chitiettruyen\luffy2.cshtml" />
+    <Content Include="Views\Home\theloai.cshtml" />
+    <Content Include="Views\Home\sploai.cshtml" />
+    <Content Include="Views\Admin\dsnguoidung.cshtml" />
+    <Content Include="Views\Admin\Deletend.cshtml" />
+    <Content Include="Views\Timkiem\ketqua.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -225,6 +389,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
