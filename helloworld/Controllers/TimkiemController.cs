@@ -18,7 +18,7 @@ namespace helloworld.Controllers
         public ActionResult ketqua(FormCollection f)
         {
             string tukhoa = f["txtname"];
-            List<TRUYEN> lsttruyen = db.TRUYENs.Where(n => n.Tentruyen.Contains(tukhoa)).ToList();
+            List<TRUYEN> lsttruyen = db.TRUYENs.Where(n => n.Tentruyen.Contains(tukhoa)).ToList();// Lấy ra danh sách truyện
             if(lsttruyen.Count==0)
             {
                 ViewBag.thongbao = "ko tim thay";
